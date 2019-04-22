@@ -151,8 +151,8 @@
 
         <TextBlock Text="rudder" Margin="356,420,372,-0.4" FontSize="20" FontWeight="Bold"/>
         <TextBlock HorizontalAlignment="Left" Height="23" Margin="370,10,0,0" TextWrapping="Wrap" Text="aileron" VerticalAlignment="Top" FontSize="20" FontWeight="Bold" Width="72"/>
-        <Slider HorizontalAlignment="Left" Margin="277,400,0,31.6" Width="245"/>
-        <Slider  HorizontalAlignment="Left" Margin="-34,226,0,0" VerticalAlignment="Top" Width="227" Height="17" RenderTransformOrigin="0.5,0.5">
+        <Slider HorizontalAlignment="Left" Margin="279,395,0,27.6" Width="245" IsSnapToTickEnabled="True"  TickPlacement="BottomRight" TickFrequency="1" Maximum="60" Minimum="-60"/>
+        <Slider  HorizontalAlignment="Left" Margin="99,124,0,0" VerticalAlignment="Top" Width="227" Height="31" IsSnapToTickEnabled="True" TickFrequency="1" Maximum="60" Minimum="-60" TickPlacement="BottomRight">
             <Slider.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
