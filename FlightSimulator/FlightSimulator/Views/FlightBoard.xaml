@@ -30,21 +30,5 @@
         <d3:ChartPlotter Grid.Row="0" Grid.Column="1" LegendVisible="False" Name="plotter">
         </d3:ChartPlotter>
         <TextBlock Grid.Row="1" Grid.ColumnSpan="2" Style="{StaticResource LabelStyle}" HorizontalAlignment="Center">Lat</TextBlock>
-        <Button Content="Connect" Grid.Column="1" HorizontalAlignment="Left" Margin="101.6,-39,0,0" VerticalAlignment="Top" Width="75">
-            <Button.Background>
-                <RadialGradientBrush>
-                    <GradientStop Color="CadetBlue" Offset="1"/>
-                    <GradientStop Color="#FFF9F6F6"/>
-                </RadialGradientBrush>
-            </Button.Background>
-        </Button>
-        <Button Content="Settings" Grid.Column="1" HorizontalAlignment="Left" Margin="309.6,-39,0,0" VerticalAlignment="Top" Width="75">
-            <Button.Background>
-                <RadialGradientBrush>
-                    <GradientStop Color="CadetBlue" Offset="1"/>
-                    <GradientStop Color="#FFF9F6F6"/>
-                </RadialGradientBrush>
-            </Button.Background>
-        </Button>
     </Grid>
 </UserControl>
