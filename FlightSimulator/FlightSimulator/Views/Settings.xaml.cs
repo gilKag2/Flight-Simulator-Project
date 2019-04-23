@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FlightSimulator.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,23 +16,16 @@ using System.Windows.Shapes;
 namespace FlightSimulator
 {
     /// <summary>
-    /// Interaction logic for Window1.xaml
+    /// Interaction logic for Settings.xaml
     /// </summary>
     public partial class Settings : Window
     {
+        SettingsViewModel vm;
         public Settings()
         {
             InitializeComponent();
-        }
-
-        private void Cancel_click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void Ok_click(object sender, RoutedEventArgs e)
-        {
-
+            vm = new SettingsViewModel();
+            DataContext = vm;
         }
     }
 }

@@ -16,26 +16,31 @@ namespace FlightSimulator.Model
         private TcpClient _client;
         private BinaryWriter _writer;
         private ISettingsModel _settings;
+        IPEndPoint ep;
         private static Commands _instance = null;
         private static readonly object padLock = new object();
         public static Commands Instance
         {
             get
             {
-                if (_instance == null)
-                    _instance = new Commands();
-                return _instance;
+                lock (padLock)
+                {
+                    if (_instance == null)
+                        _instance = new Commands();
+                    return _instance;
+                }
             }
         }
         public Commands()
         {
             _settings = ApplicationSettingsModel.Instance;
+            ep = new IPEndPoint(IPAddress.Parse(_settings.FlightServerIP), _settings.FlightCommandPort); 
         }
         public void Connect()
         {
             _client = new TcpClient();
-
-            IPEndPoint ep = new IPEndPoint(IPAddress.Parse(_settings.FlightServerIP), _settings.FlightCommandPort);
+            
+            // try to connect until sucess.
             while (!_client.Connected)
             {
                 try
@@ -43,6 +48,11 @@ namespace FlightSimulator.Model
                     _client.Connect(ep);
                 } catch (Exception) { }
             }
+        }
+        public void SendCommands(string commands)
+        {
+            _writer = new BinaryWriter(_client.GetStream());
+            // send here the data to the simulator on different thread !!!!!!!!!!!!!!1
         }
 
 

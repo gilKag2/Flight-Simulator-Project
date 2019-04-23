@@ -14,17 +14,17 @@
             </TabItem>
             <TabItem Header="AutoPilot" FontSize="20" FontWeight="Bold">
                 <Grid>
-                    <Border BorderBrush="Navy" BorderThickness="2" Margin="0,0,0.4,157.2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="38*"/>
+                        <ColumnDefinition Width="757*"/>
+                    </Grid.ColumnDefinitions>
+                    <Border BorderBrush="Navy" BorderThickness="2" Margin="0,0,0.4,157.6" Grid.ColumnSpan="2">
                         <TextBox Background="LightPink"/>
                         <!--need to bind this!!!!1-->
                     </Border>
-                    <Button  Content="OK" FontSize="20" HorizontalAlignment="Center" Margin="335,384,409.4,0" VerticalAlignment="Top" Width="50"/>
+                    <Button  Content="OK" FontSize="20" HorizontalAlignment="Center" Margin="297.1,384,409.4,0" VerticalAlignment="Top" Width="50" Grid.Column="1"/>
 
-                    <Button  Content="Clear" FontSize="20" HorizontalAlignment="Center" Margin="433,384,304.4,0" VerticalAlignment="Top" Width="57"/>
-
-
-
-
+                    <Button  Content="Clear" FontSize="20" HorizontalAlignment="Center" Margin="395.1,384,304.4,0" VerticalAlignment="Top" Width="57" Grid.Column="1"/>
                 </Grid>
 
             </TabItem>
