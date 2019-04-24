@@ -50,7 +50,7 @@ namespace FlightSimulator.Views {
     public partial class FlightBoard : System.Windows.Controls.UserControl, System.Windows.Markup.IComponentConnector {
         
         
-        #line 30 "..\..\..\Views\FlightBoard.xaml"
+        #line 35 "..\..\..\Views\FlightBoard.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal Microsoft.Research.DynamicDataDisplay.ChartPlotter plotter;
         
