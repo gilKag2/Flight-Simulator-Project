@@ -40,6 +40,13 @@ namespace FlightSimulator.ViewModels
                 return _lat;
             }
         }
+        public bool IsConnected
+        {
+            get
+            {
+                return model.IsConnected;
+            }
+        }
         private ICommand _settingsCommand;
         public ICommand SettingsCommand => _settingsCommand ?? (_settingsCommand = new CommandHandler(() => OnSettings()));
 
@@ -48,11 +55,18 @@ namespace FlightSimulator.ViewModels
             model.OpenSettings();
         }
         private ICommand _connectCommand;
-        public ICommand connectCommand => _connectCommand ?? (_connectCommand = new CommandHandler(() => onConnect()));
+        public ICommand ConnectCommand => _connectCommand ?? (_connectCommand = new CommandHandler(() => OnConnect()));
 
-        private void onConnect()
+        private void OnConnect()
         {
-            throw new NotImplementedException();
+            model.Connect();
+        }
+        private ICommand _disconnectCommand;
+        public ICommand DisconnectCommand => _disconnectCommand ?? (_disconnectCommand = new CommandHandler(() => OnDisconnect()));
+
+        private void OnDisconnect()
+        {
+            model.Disconnect();
         }
     }
 }

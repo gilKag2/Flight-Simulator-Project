@@ -9,12 +9,34 @@ namespace FlightSimulator.Model
         private double _lon;
         private double _lat;
         private Settings _settings;
-        private bool _isSettingsWindowOpen = false;
+        private Info server;
+        private Commands client;
+        private bool _isConnected;
+        private bool _isSettingsWindowOpen;
+        public FlightBoardModel()
+        {
+            _isConnected = false;
+            _isSettingsWindowOpen = false;
+            server = Info.Instance;
+            client = Commands.Instance;
+        }
         public double Lat
         {
             get
             {
                 return _lat;
+            }
+            set
+            {
+                _lat = value;
+                NotifyPropertyChanged("Lat");
+            }
+        }
+        public bool IsConnected
+        {
+            get
+            {
+                return _isConnected;
             }
         }
 
@@ -23,6 +45,11 @@ namespace FlightSimulator.Model
             get
             {
                 return _lon;
+            }
+            set
+            {
+                _lon = value;
+                NotifyPropertyChanged("Lon");
             }
 
         }
@@ -45,7 +72,16 @@ namespace FlightSimulator.Model
 
         public void Connect()
         {
+            server.OpenServer();
+            client.Connect();
+            _isConnected = true;
+              
+        }
+        public void Disconnect()
+        {
+            _isConnected = false;
             throw new NotImplementedException();
         }
     }
+
 }

@@ -16,7 +16,6 @@ namespace FlightSimulator.Model
     {
         private TcpListener server;
         private TcpClient client;
-        private BinaryReader reader;
         private IPEndPoint ep;
         IClientHandler ch;
         private bool _stop;
@@ -56,7 +55,7 @@ namespace FlightSimulator.Model
             _stop = true;
             client.Close();
             server.Stop();
-            reader.Close();
+
         }
 
 
@@ -67,11 +66,15 @@ namespace FlightSimulator.Model
                 try
                 {
                     TcpClient client = server.AcceptTcpClient();
-                    reader = new BinaryReader(client.GetStream());
-                    while (!_stop)
-                    {
-                        Console.WriteLine("got a connection"); /// delete later its just for debug!!!!!!!!
-                        ch.HandleClient(client);
+                    using (NetworkStream stream = client.GetStream()) {
+                        while (!_stop)
+                        {
+                            Console.WriteLine("got a connection"); /// delete later its just for debug!!!!!!!!
+                            byte[] data = new Byte[client.ReceiveBufferSize];
+                            Int32 bytesReaden = stream.Read(data, 0, data.Length);
+                            string[] parsedData = Encoding.ASCII.GetString(data, 0, bytesReaden).Split(',');
+                            // maybe think about a better way to return the values, maybe client handler. the lon and lat should be in the 0 and 1 places in the parsed data array.
+                        }
                     }
                 }
                 catch (SocketException) { }
