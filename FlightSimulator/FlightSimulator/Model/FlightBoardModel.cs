@@ -42,5 +42,10 @@ namespace FlightSimulator.Model
             _settings.Show();
             _isSettingsWindowOpen = true;
         }
+
+        public void Connect()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
