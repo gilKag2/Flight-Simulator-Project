@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" Background="White"
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="340" d:DesignWidth="340">
     <Grid>
         <Canvas  x:Name="Base" Margin="0" Width="340" Height="340">
             <Ellipse HorizontalAlignment="Left" Height="340" VerticalAlignment="Top" Width="340">
@@ -135,41 +135,6 @@
             </Canvas>
         </Canvas>
 
-        <TextBlock Text="&#8592;" Margin="309,403,388,-3.4"  FontSize="40"/>
-        <TextBlock Text="&#8592;" Margin="325,-4,372,399.6"  FontSize="40"/>
-        <TextBlock Text="&#8595;" Margin="30,280,742,110.6"  FontSize="40" />
-        <TextBlock Text="&#8595;" Margin="726,280,46,110.6"  FontSize="40" />
-        <TextBlock Text="&#8593;" Margin="30,119,742,261.6"  FontSize="40" />
-        <TextBlock Text="&#8593;" Margin="726,119,46,261.6"  FontSize="40" />
-        <TextBlock Text="&#8594;" Margin="433,403,14,-0.4" FontSize="40"/>
-        <TextBlock Text="&#8594;" Margin="436,-4,14,-0.4" FontSize="40"/>
-        <TextBlock Text="throttle" Margin="-78,196,743,169.6" FontSize="20" FontWeight="Bold">
-            <TextBlock.LayoutTransform>
-                <RotateTransform Angle="90"></RotateTransform>
-            </TextBlock.LayoutTransform>
-        </TextBlock>
-
-        <TextBlock Text="rudder" Margin="356,420,372,-0.4" FontSize="20" FontWeight="Bold"/>
-        <TextBlock HorizontalAlignment="Left" Height="23" Margin="370,10,0,0" TextWrapping="Wrap" Text="aileron" VerticalAlignment="Top" FontSize="20" FontWeight="Bold" Width="72"/>
-        <Slider HorizontalAlignment="Left" Margin="279,395,0,27.6" Width="245" IsSnapToTickEnabled="True"  TickPlacement="BottomRight" TickFrequency="1" Maximum="60" Minimum="-60"/>
-        <Slider  HorizontalAlignment="Left" Margin="99,124,0,0" VerticalAlignment="Top" Width="227" Height="31" IsSnapToTickEnabled="True" TickFrequency="1" Maximum="60" Minimum="-60" TickPlacement="BottomRight">
-            <Slider.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-
-                    <RotateTransform Angle="90"/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </Slider.RenderTransform>
-        </Slider>
-        <TextBlock HorizontalAlignment="Left" Margin="753,188,-35,0" TextWrapping="Wrap" Text="elevator" VerticalAlignment="Top" Height="27" Width="82" FontSize="20" FontWeight="Bold">
-            <TextBlock.RenderTransform>
-                <TransformGroup>
-                    <RotateTransform Angle="90"/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </TextBlock.RenderTransform>
-        </TextBlock>
-
+       
     </Grid>
 </UserControl>
