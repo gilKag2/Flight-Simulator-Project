@@ -30,8 +30,8 @@ namespace FlightSimulator.Views
         public FlightBoard()
         {
             InitializeComponent();
-            vm = new FlightBoardViewModel();
-            DataContext = vm;
+            //vm = new FlightBoardViewModel();
+            //DataContext = vm;
 
         }
 
