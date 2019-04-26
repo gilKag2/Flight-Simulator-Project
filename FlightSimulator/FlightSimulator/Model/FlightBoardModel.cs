@@ -13,6 +13,8 @@ namespace FlightSimulator.Model
         private Commands client;
         private bool _isConnected;
         private bool _isSettingsWindowOpen;
+
+
         public FlightBoardModel()
         {
             _isConnected = false;
@@ -32,14 +34,6 @@ namespace FlightSimulator.Model
                 NotifyPropertyChanged("Lat");
             }
         }
-        public bool IsConnected
-        {
-            get
-            {
-                return _isConnected;
-            }
-        }
-
         public double Lon
         {
             get
@@ -51,8 +45,15 @@ namespace FlightSimulator.Model
                 _lon = value;
                 NotifyPropertyChanged("Lon");
             }
-
         }
+        public bool IsConnected
+        {
+            get
+            {
+                return _isConnected;
+            }
+        }
+
         public void CloseSettings()
         {
             if (!_isSettingsWindowOpen)
