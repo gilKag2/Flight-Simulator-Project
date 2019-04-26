@@ -1,11 +1,5 @@
 ﻿using FlightSimulator.Model;
-using FlightSimulator.Model.Interface;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace FlightSimulator.ViewModels
@@ -35,6 +29,11 @@ namespace FlightSimulator.ViewModels
             {
                 return _lon;
             }
+            set
+            {
+                _lon = value;
+                NotifyPropertyChanged("Lon");
+            }
         }
 
         public double Lat
@@ -42,6 +41,11 @@ namespace FlightSimulator.ViewModels
             get
             {
                 return _lat;
+            }
+            set
+            {
+                _lat = value;
+                NotifyPropertyChanged("Lat");
             }
         }
         public bool IsConnected

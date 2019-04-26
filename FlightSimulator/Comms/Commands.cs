@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
+
 namespace FlightSimulator.Model
 {
     //singleton.
@@ -71,6 +72,8 @@ namespace FlightSimulator.Model
                 {
                     // send commands!!
                 }
+               // send the data every 2 seconds.
+                Thread.Sleep(2000);
             });
             thread.Start();
             // send here the data to the simulator on different thread !!!!!!!!!!!!!!1

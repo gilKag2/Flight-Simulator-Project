@@ -8,7 +8,6 @@ namespace FlightSimulator.Model
     {
         private double _lon;
         private double _lat;
-        private Settings _settings;
         private Info server;
         private Commands client;
         private bool _isConnected;

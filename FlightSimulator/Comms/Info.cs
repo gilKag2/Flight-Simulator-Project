@@ -16,7 +16,6 @@ namespace FlightSimulator.Model
     public sealed class Info : BaseNotify
     {
         private TcpListener server;
-        private TcpClient client;
         private IPEndPoint ep;
         private bool _stop;
         private ISettingsModel _settings;
@@ -37,6 +36,7 @@ namespace FlightSimulator.Model
         }
         public Info()
         {
+            server = new TcpListener(ep);
             _settings = ApplicationSettingsModel.Instance;
             ep = new IPEndPoint(IPAddress.Parse(_settings.FlightServerIP), _settings.FlightInfoPort);
             _stop = false;
@@ -47,18 +47,18 @@ namespace FlightSimulator.Model
         {
             // not sure here check this !!!!!!!!!!!!!111.
             if (server != null) CloseServer();
-            server = new TcpListener(ep);
+            
             server.Start();
         }
         public void CloseServer()
         {
             _stop = true;
-            client.Close();
             server.Stop();
         }
 
 
-        public void Listen(FlightBoardModel model) { 
+        public void Listen(FlightBoardModel model) {
+            if (server == null) return;
             Thread thread = new Thread(() =>
             {
                 try
@@ -78,8 +78,10 @@ namespace FlightSimulator.Model
                             // maybe think about a better way to return the values, maybe client handler. the lon and lat should be in the 0 and 1 places in the parsed data array.
                         }
                     }
+                    client.Close();
                 }
                 catch (SocketException) { }
+                
             });
             thread.Start();
             // read the data here !!!

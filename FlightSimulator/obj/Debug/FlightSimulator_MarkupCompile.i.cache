@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\Gil\Documents\YearB\Advanced2\Ex2\FlightSimulator\FlightSimulator\App.xaml
-6-1399305968
+6279985326
 
-271401225123
+281640272789
 16-319400563
-MainWindow.xaml;Views\FlightBoard.xaml;Views\Joystick.xaml;Views\ManuelView.xaml;Views\Windows\Settings.xaml;Views\ControlDisplay.xaml;
+MainWindow.xaml;Views\AutoPilot.xaml;Views\FlightBoard.xaml;Views\Joystick.xaml;Views\ManuelView.xaml;Views\Windows\Settings.xaml;
 
 True
 
