@@ -15,12 +15,13 @@ namespace FlightSimulator.ViewModels
         {
             get
             {
+
                 return _backgroundColor;
             }
             set
             {
                 _backgroundColor = value;
-                NotifyPropertyChanged("Background Color");
+                NotifyPropertyChanged("BackgroundColor");
             }
         }
 
@@ -44,7 +45,8 @@ namespace FlightSimulator.ViewModels
             set
             {
                 _commands = value;
-                BackgroundColor = Brushes.LightPink;
+                if (Commands != "") BackgroundColor = Brushes.LightPink;
+                else BackgroundColor = Brushes.White;
                 NotifyPropertyChanged("Commands");
             }
         }
@@ -68,6 +70,7 @@ namespace FlightSimulator.ViewModels
         {
             BackgroundColor = Brushes.White;
            Commands = "";
+
         }
     }
 }

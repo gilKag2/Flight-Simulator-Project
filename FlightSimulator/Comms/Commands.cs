@@ -51,15 +51,20 @@ namespace FlightSimulator.Model
         }
         public void Connect()
         {
-            // try to connect until sucess.
-            while (!_client.Connected)
+            Thread thread = new Thread(() =>
             {
-                try
+                // try to connect until sucess.
+                while (!_client.Connected)
                 {
-                    _client.Connect(ep);
+                    try
+                    {
+                        _client.Connect(ep);
+                        Thread.CurrentThread.Abort();
+                    }
+                    catch (Exception) { }
                 }
-                catch (Exception) { }
-            }
+            });
+            thread.Start();
             _isConnected = true;
         }
         public void SendCommands(string[] commands)

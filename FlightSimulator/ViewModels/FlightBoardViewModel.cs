@@ -15,7 +15,6 @@ namespace FlightSimulator.ViewModels
         public FlightBoardViewModel()
         {
             _isSettingsWindowOpen = false;
-            settings = new Settings();
             model = new FlightBoardModel();
             model.PropertyChanged += delegate (object sender, PropertyChangedEventArgs e)
             {
@@ -63,9 +62,10 @@ namespace FlightSimulator.ViewModels
             if (settings == null || settings.IsLoaded)
             {
                 settings = new Settings();
+                settings.Show();
+                _isSettingsWindowOpen = true;
             }
-            settings.Show();
-            _isSettingsWindowOpen = true;
+         
         }
 
         private ICommand _connectCommand;

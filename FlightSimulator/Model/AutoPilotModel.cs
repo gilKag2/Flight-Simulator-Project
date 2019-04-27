@@ -6,16 +6,10 @@ namespace FlightSimulator.Model
     {
 
       
-        private bool doneSending;
-
-        public AutoPilotModel()
-        {
-
-        }
-
         public void SendCommands(string commands)
         {
             Commands client = Commands.Instance;
+            if (!client.IsConnected) return;
             string[] commandsArray = commands.Split('\n');
             client.SendCommands(commandsArray);
         }
