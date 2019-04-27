@@ -16,7 +16,6 @@ namespace FlightSimulator.Model
     public sealed class Commands
     {
         private TcpClient _client;
-        private BinaryWriter _writer;
         private ISettingsModel _settings;
         private bool _isConnected;
         private bool _stop = false;
@@ -63,20 +62,30 @@ namespace FlightSimulator.Model
             }
             _isConnected = true;
         }
-        public void SendCommands(string[] commands) // not sure yet if we recieve array of strings, or long string and parse it.
+        public void SendCommands(string[] commands)
         {
-            _writer = new BinaryWriter(_client.GetStream());
+            if (!_isConnected) return;
+
             Thread thread = new Thread(delegate ()
             {
-                while (!_stop)
+                using (NetworkStream stream = _client.GetStream())
                 {
-                    // send commands!!
+                    while (!_stop)
+                    {
+                        foreach (string command in commands)
+                        {
+                            Byte[] data = Encoding.ASCII.GetBytes(command + "\r\n");
+                            stream.Write(data, 0, data.Length);
+                            stream.Flush();
+                            // send the data every 2 seconds.
+                            Thread.Sleep(2000);
+                        }
+                    }
+                    
                 }
-               // send the data every 2 seconds.
-                Thread.Sleep(2000);
+               
             });
             thread.Start();
-            // send here the data to the simulator on different thread !!!!!!!!!!!!!!1
         }
 
 
@@ -85,7 +94,7 @@ namespace FlightSimulator.Model
             if (_client != null)
             {
                 _client.Close();
-                _writer.Close();
+                Thread.CurrentThread.Abort();
                 _isConnected = false;
                 _stop = true;
             }

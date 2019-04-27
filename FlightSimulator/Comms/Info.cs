@@ -36,9 +36,9 @@ namespace FlightSimulator.Model
         }
         public Info()
         {
-            server = new TcpListener(ep);
             _settings = ApplicationSettingsModel.Instance;
             ep = new IPEndPoint(IPAddress.Parse(_settings.FlightServerIP), _settings.FlightInfoPort);
+            server = new TcpListener(ep);
             _stop = false;
         }
       

@@ -62,6 +62,9 @@ namespace FlightSimulator.ViewModels
         private void OnOk()
         {
             Save();
+
+            // close settings window
+           
         }
         private ICommand _cancelCommand;
         public ICommand CancelCommand => _cancelCommand ?? (_cancelCommand = new CommandHandler(() => OnCancel()));
@@ -69,6 +72,7 @@ namespace FlightSimulator.ViewModels
         private void OnCancel()
         {
             Reload();
+            // close settings
         }
     }
 }

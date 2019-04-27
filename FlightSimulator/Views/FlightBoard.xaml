@@ -4,14 +4,13 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:d3="http://research.microsoft.com/DynamicDataDisplay/1.0"
-             xmlns:local="clr-namespace:FlightSimulator.Views"
              mc:Ignorable="d"  Background="White"
              d:DesignHeight="450" d:DesignWidth="800" Loaded="UserControl_Loaded">
     <DockPanel>
         <WrapPanel  DockPanel.Dock="Top" HorizontalAlignment="Center" Width="400" Height="34" Margin="0,0,0,0">
             <Button Width="100" Height="27" Margin="0,0,0,0" Command="{Binding ConnectCommand}">Connect</Button>
             <Button Width="100" Height="27" Margin="20,0,0,0" Command="{Binding SettingsCommand}">Settings</Button>
-            <Button Width="100" Height="27" Margin= "20,0,0,0" Command="{Binding DisconnectCommand}">Disconnect</Button>  
+            <Button Width="100" Height="27" Margin= "20,0,0,0" Command="{Binding DisconnectCommand}">Disconnect</Button>
         </WrapPanel>
         <Grid>
             <Grid.Resources>
@@ -38,5 +37,4 @@
             <TextBlock Grid.Row="1" Grid.ColumnSpan="2" Style="{StaticResource LabelStyle}" HorizontalAlignment="Center">Lat</TextBlock>
         </Grid>
     </DockPanel>
-
 </UserControl>

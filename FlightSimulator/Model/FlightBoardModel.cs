@@ -12,8 +12,6 @@ namespace FlightSimulator.Model
         private Commands client;
         private bool _isConnected;
       
-
-
         public FlightBoardModel()
         {
             _isConnected = false;
@@ -63,7 +61,8 @@ namespace FlightSimulator.Model
         public void Disconnect()
         {
             _isConnected = false;
-            throw new NotImplementedException();
+            client.CloseConnection();
+            server.CloseServer();
         }
     }
 

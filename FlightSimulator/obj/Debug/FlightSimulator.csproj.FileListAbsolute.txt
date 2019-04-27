@@ -74,9 +74,7 @@ C:\Users\Gil\Documents\YearB\Advanced2\Ex2\FlightSimulator\FlightSimulator\obj\D
 C:\Users\Gil\Documents\YearB\Advanced2\Ex2\FlightSimulator\FlightSimulator\obj\Debug\Views\Windows\Settings.baml
 C:\Users\Gil\Documents\YearB\Advanced2\Ex2\FlightSimulator\FlightSimulator\obj\Debug\Views\ManuelView.g.cs
 C:\Users\Gil\Documents\YearB\Advanced2\Ex2\FlightSimulator\FlightSimulator\obj\Debug\Views\Windows\Settings.g.cs
-C:\Users\Gil\Documents\YearB\Advanced2\Ex2\FlightSimulator\FlightSimulator\obj\Debug\Views\ControlDisplay.g.cs
 C:\Users\Gil\Documents\YearB\Advanced2\Ex2\FlightSimulator\FlightSimulator\obj\Debug\GeneratedInternalTypeHelper.g.cs
 C:\Users\Gil\Documents\YearB\Advanced2\Ex2\FlightSimulator\FlightSimulator\obj\Debug\Views\ManuelView.baml
-C:\Users\Gil\Documents\YearB\Advanced2\Ex2\FlightSimulator\FlightSimulator\obj\Debug\Views\ControlDisplay.baml
 C:\Users\Gil\Documents\YearB\Advanced2\Ex2\FlightSimulator\FlightSimulator\obj\Debug\Views\AutoPilot.g.cs
 C:\Users\Gil\Documents\YearB\Advanced2\Ex2\FlightSimulator\FlightSimulator\obj\Debug\Views\AutoPilot.baml
