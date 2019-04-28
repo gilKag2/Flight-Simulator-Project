@@ -42,7 +42,7 @@ namespace FlightSimulator.Model
         {
             _settings = ApplicationSettingsModel.Instance;
             ep = new IPEndPoint(IPAddress.Parse(_settings.FlightServerIP), _settings.FlightInfoPort);
-            
+
             _stop = false;
         }
 
@@ -52,7 +52,7 @@ namespace FlightSimulator.Model
             server = new TcpListener(ep);
             server.Start();
             IsConnected = true;
-           
+
         }
         public void CloseServer()
         {
@@ -77,16 +77,23 @@ namespace FlightSimulator.Model
                     {
                         while (!_stop && stream != null && stream.CanRead)
                         {
+                            try
+                            {
 
-                            byte[] data = new Byte[client.ReceiveBufferSize];
-                            Int32 bytesReaden = stream.Read(data, 0, data.Length);
-                            string[] parsedData = Encoding.ASCII.GetString(data, 0, bytesReaden).Split(',');
-                            Console.WriteLine("lon before {0}", model.Lon);
-                            // the lon and lat values should be in the first two indexes.
-                            model.Lon = Convert.ToDouble(parsedData[0]);
-                            model.Lat = Convert.ToDouble(parsedData[1]);
-                            Console.WriteLine("lon after {0}", model.Lon);
-                           
+                                byte[] data = new Byte[client.ReceiveBufferSize];
+                                Int32 bytesReaden = stream.Read(data, 0, data.Length);
+                                string[] parsedData = Encoding.ASCII.GetString(data, 0, bytesReaden).Split(',');
+
+                                double lon = Convert.ToDouble(parsedData[0]);
+                                double lat = Convert.ToDouble(parsedData[1]);
+
+                                // the lon and lat values should be in the first two indexes.
+                                model.Lon = Convert.ToDouble(parsedData[0]);
+                                model.Lat = Convert.ToDouble(parsedData[1]);
+
+
+                            }
+                            catch (Exception) { }
                         }
                     }
                     client.Close();

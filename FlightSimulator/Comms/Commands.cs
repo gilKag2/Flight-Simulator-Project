@@ -18,6 +18,7 @@ namespace FlightSimulator.Model
         volatile private TcpClient _client;
         private ISettingsModel _settings;
         private bool _isConnected;
+        private NetworkStream stream;
         IPEndPoint ep;
         private static Commands _instance = null;
         private static readonly object padLock = new object();
@@ -49,7 +50,6 @@ namespace FlightSimulator.Model
         }
         public void Connect()
         {
-            Console.WriteLine("trying to connect - client");
             _client = new TcpClient();
             Thread thread = new Thread(() =>
             {
@@ -59,12 +59,13 @@ namespace FlightSimulator.Model
                     try
                     {
                         _client.Connect(ep);
-                        Console.WriteLine("connected - client");
+                        stream = _client.GetStream();
                     }
                     catch (SocketException) { }
                 }
             });
             thread.Start();
+           
             _isConnected = true;
         }
         public void SendCommands(string[] commands)
@@ -73,19 +74,15 @@ namespace FlightSimulator.Model
 
             Thread thread = new Thread(delegate ()
             {
-                using (NetworkStream stream = _client.GetStream())
-                {
-                    foreach (string command in commands)
-                    {
-                        Console.WriteLine("sending data - client");
-                        Byte[] data = Encoding.ASCII.GetBytes(command + "\r\n");
-                        stream.Write(data, 0, data.Length);
-                        stream.Flush();
-                        // send the data every 2 seconds.
-                        Thread.Sleep(2000);
-                    }
-                }
 
+                foreach (string command in commands)
+                {
+                    Byte[] data = Encoding.ASCII.GetBytes(command + "\r\n");
+                    stream.Write(data, 0, data.Length);
+                    stream.Flush();
+                    // send the data every 2 seconds.
+                    Thread.Sleep(2000);
+                }
             });
             thread.Start();
         }
@@ -93,12 +90,11 @@ namespace FlightSimulator.Model
 
         public void CloseConnection()
         {
-            if (_client != null && !IsConnected)
+            if (_client != null && IsConnected)
             {
-                Console.WriteLine("disconnecting");
                 _client.Close();
                 _isConnected = false;
-                
+
             }
         }
 
