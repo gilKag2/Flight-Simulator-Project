@@ -1,4 +1,5 @@
 ﻿using FlightSimulator.Model.EventArgs;
+using FlightSimulator.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -47,14 +48,14 @@ namespace FlightSimulator.Views
         public double Aileron
         {
             get { return Convert.ToDouble(GetValue(AileronProperty)); }
-            set { SetValue(AileronProperty, value); }
+            set { SetValue(AileronProperty, value/124); }
         }
 
         /// <summary>current Elevator (or "power"), from 0 to 100</summary>
         public double Elevator
         {
             get { return Convert.ToDouble(GetValue(ElevatorProperty)); }
-            set { SetValue(ElevatorProperty, value); }
+            set { SetValue(ElevatorProperty, value/124); }
         }
 
         /// <summary>How often should be raised StickMove event in degrees</summary>
@@ -112,7 +113,6 @@ namespace FlightSimulator.Views
         public Joystick()
         {
             InitializeComponent();
-
             Knob.MouseLeftButtonDown += Knob_MouseLeftButtonDown;
             Knob.MouseLeftButtonUp += Knob_MouseLeftButtonUp;
             Knob.MouseMove += Knob_MouseMove;
@@ -159,7 +159,7 @@ namespace FlightSimulator.Views
             Moved?.Invoke(this, new VirtualJoystickEventArgs { Aileron = Aileron, Elevator = Elevator });
             _prevAileron = Aileron;
             _prevElevator = Elevator;
-
+            
         }
 
         private void Knob_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)

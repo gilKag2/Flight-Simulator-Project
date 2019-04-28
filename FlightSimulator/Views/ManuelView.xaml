@@ -8,42 +8,39 @@
              d:DesignHeight="500" d:DesignWidth="550">
     <Grid>
         <DockPanel>
-            <StackPanel DockPanel.Dock="Left" Orientation="Horizontal" VerticalAlignment="Center" Height="168" Margin="0,157,0,175">
+            <StackPanel DockPanel.Dock="Left" Orientation="Horizontal" VerticalAlignment="Center" Height="150">
                 <TextBlock Text="← throttle →"  FontSize="20" Height="30" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,0,-26,0" Width="118">
                     <TextBlock.LayoutTransform>
                         <RotateTransform Angle="-90"/>
                     </TextBlock.LayoutTransform>
                 </TextBlock>
-                <Slider Orientation="Vertical"  Margin="40,0,0,0"  IsSnapToTickEnabled="True" TickFrequency="0.1" Maximum="1" Minimum="-1" TickPlacement="BottomRight">
+                <Slider Value ="{Binding VM_throttle}" Orientation="Vertical"  Margin="40,0,0,0"  IsSnapToTickEnabled="True" TickFrequency="0.05" Maximum="1" Minimum="-1" TickPlacement="BottomRight">
                     <Slider.LayoutTransform>
                         <RotateTransform Angle="-180"/>
                     </Slider.LayoutTransform>
                 </Slider>
-                <Label Content="{Binding VM_throttle, UpdateSourceTrigger=PropertyChanged}" ContentStringFormat="{}{0:#,0#.0}" Margin="-30,-50,0,0" FontSize="15"/>
             </StackPanel>
 
-            <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" VerticalAlignment="Center" Height="184" Margin="0,141,0,175" Width="53">
+            <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" VerticalAlignment="Center" Height="150" Margin="0,150,0,149.6" Width="53">
                 <TextBlock Text ="← elevator →" FontSize="20" Height="30" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0">
                     <TextBlock.LayoutTransform>
                         <RotateTransform Angle="90"/>
                     </TextBlock.LayoutTransform>
                 </TextBlock>
-                <Label Content="{Binding VM_elevator, UpdateSourceTrigger=PropertyChanged}" ContentStringFormat="{}{0:#,0#.0}" Margin="-40,-60,0,0" FontSize="15"/>
             </StackPanel>
-            <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" VerticalAlignment="Center" Height="53" Margin="99,0,43.6,0">
-                <Slider   Margin="0,-20,0,0" VerticalAlignment="Top" IsSnapToTickEnabled="True" TickFrequency="0.1" Maximum="1" Minimum="-1" TickPlacement="TopLeft" Width="219" Height="47">
+            <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" VerticalAlignment="Center" Height="53" Margin="99,0,101.6,0">
+                <Slider  Value="{Binding VM_rudder}" Margin="0,-20,0,0" VerticalAlignment="Top" IsSnapToTickEnabled="True" TickFrequency="0.05" Maximum="1" Minimum="-1" TickPlacement="TopLeft" Width="219" Height="47">
                     <Slider.LayoutTransform>
                         <RotateTransform Angle="-180"/>
                     </Slider.LayoutTransform>
                 </Slider>
                 <TextBlock Text="← rudder →" FontSize="20" Width="110" VerticalAlignment="Bottom"  Margin="-210,0,0,0"/>
-                <Label Content="{Binding VM_rudder, UpdateSourceTrigger=PropertyChanged}" ContentStringFormat="{}{0:#,0#.0}" Margin="10,5,0,0" FontSize="15"/>
             </StackPanel>
             <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" VerticalAlignment="Center" Height="39" Margin="0,0,-0.4,0">
                 <TextBlock Text="← aileron →" FontSize="20" Margin="170,10,0,0.2"/>
-                <Label Content="{Binding VM_aileron, UpdateSourceTrigger=PropertyChanged}" ContentStringFormat="{}{0:#,0#.0}" Margin="50,5,0,0" FontSize="15"/>
             </StackPanel>
-            <views:Joystick  Width="342" Margin="0,18.8,0,0" Height="354" VerticalAlignment="Top" >
+            <views:Joystick Elevator="{Binding VM_elevator, Mode=TwoWay}"
+                         Aileron="{Binding VM_aileron, Mode= TwoWay}" Width="342" Margin="0,18.8,0,0" Height="354" VerticalAlignment="Top" >
             </views:Joystick>
         </DockPanel>
 
