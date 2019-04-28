@@ -13,7 +13,7 @@ namespace FlightSimulator.ViewModels
         private ManualModel manualModel;
         public ManualViewModel()
         {
-            this.manualModel = new ManualModel(this);
+            this.manualModel = new ManualModel();
         }
 
         public double VM_rudder
@@ -22,7 +22,8 @@ namespace FlightSimulator.ViewModels
             set
             {
                 vm_rudder = value;
-                this.manualModel.setCommands("set /controls/flight/rudder " + value.ToString("0.00"));
+                // sends the set command to the simulator via the model.
+                this.manualModel.SetCommands("set /controls/flight/rudder " + value.ToString("0.00"));
                 NotifyPropertyChanged("VM_rudder");
             }
         }
@@ -33,7 +34,7 @@ namespace FlightSimulator.ViewModels
             set
             {
                 vm_throttle = value;
-                this.manualModel.setCommands("set /controls/engines/current-engine/throttle " + value.ToString("0.00"));
+                this.manualModel.SetCommands("set /controls/engines/current-engine/throttle " + value.ToString("0.00"));
                 NotifyPropertyChanged("VM_throttle");
             }
         }
@@ -44,7 +45,7 @@ namespace FlightSimulator.ViewModels
             set
             {
                 vm_aileron = value;
-                this.manualModel.setCommands("set /controls/flight/aileron " + value.ToString("0.00"));
+                this.manualModel.SetCommands("set /controls/flight/aileron " + value.ToString("0.00"));
                 NotifyPropertyChanged("VM_aileron");
             }
         }
@@ -56,7 +57,7 @@ namespace FlightSimulator.ViewModels
             set
             {
                 vm_elevator = value;
-                this.manualModel.setCommands("set /controls/flight/elevator " + value.ToString("0.00"));
+                this.manualModel.SetCommands("set /controls/flight/elevator " + value.ToString("0.00"));
                 NotifyPropertyChanged("VM_elevator");
             }
         }

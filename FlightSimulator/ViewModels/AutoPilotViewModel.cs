@@ -45,6 +45,7 @@ namespace FlightSimulator.ViewModels
             set
             {
                 _text = value;
+                // if the text isnt empty, change the background to Light pink color, otherwise the color will be white.
                 if (_text != "") BackgroundColor = Brushes.LightPink;
                 else BackgroundColor = Brushes.White;
                 NotifyPropertyChanged("Text");

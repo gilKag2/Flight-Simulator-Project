@@ -15,10 +15,9 @@ namespace FlightSimulator.Model
     //singleton.
     public sealed class Commands
     {
-        private TcpClient _client;
+        volatile private TcpClient _client;
         private ISettingsModel _settings;
         private bool _isConnected;
-        private bool _stop = false;
         IPEndPoint ep;
         private static Commands _instance = null;
         private static readonly object padLock = new object();
@@ -61,9 +60,8 @@ namespace FlightSimulator.Model
                     {
                         _client.Connect(ep);
                         Console.WriteLine("connected - client");
-                        //Thread.CurrentThread.Abort();
                     }
-                    catch (Exception) { }
+                    catch (SocketException) { }
                 }
             });
             thread.Start();
@@ -95,12 +93,12 @@ namespace FlightSimulator.Model
 
         public void CloseConnection()
         {
-            if (_client != null)
+            if (_client != null && !IsConnected)
             {
+                Console.WriteLine("disconnecting");
                 _client.Close();
-                Thread.CurrentThread.Abort();
                 _isConnected = false;
-                _stop = true;
+                
             }
         }
 

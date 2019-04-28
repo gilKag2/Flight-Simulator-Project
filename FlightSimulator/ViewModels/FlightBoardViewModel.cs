@@ -58,11 +58,10 @@ namespace FlightSimulator.ViewModels
 
         private void OnSettings()
         {
+            // creates a setting window only if there isnt one that is already open.
           if (!settings.IsLoaded ) settings = new Settings();
 
           settings.Show();
-
-
         }
 
         private ICommand _connectCommand;

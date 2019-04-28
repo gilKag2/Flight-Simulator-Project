@@ -10,14 +10,8 @@ namespace FlightSimulator.Model
 {
     internal class ManualModel : BaseNotify
     {
-        private ManualViewModel manualVM;
-
-        public ManualModel(ManualViewModel manualVM) 
-        {
-            this.manualVM = manualVM;
-        }
-
-        public void setCommands(string command) {
+        // sends the set command.
+        public void SetCommands(string command) {
             string[] commandPrep = { command };
             Commands.Instance.SendCommands(commandPrep);
         }

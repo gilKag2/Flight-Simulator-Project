@@ -42,21 +42,25 @@ namespace FlightSimulator.Model
         {
             _settings = ApplicationSettingsModel.Instance;
             ep = new IPEndPoint(IPAddress.Parse(_settings.FlightServerIP), _settings.FlightInfoPort);
-            server = new TcpListener(ep);
+            
             _stop = false;
         }
 
 
         public void OpenServer()
         {
-
+            server = new TcpListener(ep);
             server.Start();
+            IsConnected = true;
+           
         }
         public void CloseServer()
         {
+            if (server == null) return;
             Console.WriteLine("closing");
             _stop = true;
             server.Stop();
+            IsConnected = false;
         }
 
 
@@ -72,7 +76,7 @@ namespace FlightSimulator.Model
 
                     using (NetworkStream stream = client.GetStream())
                     {
-                        Console.WriteLine("stop is {0}", _stop.ToString());
+                        Console.WriteLine("stop is {0}", _stop.ToString()); ///////////////////delete
                         while (!_stop)
                         {
 
@@ -83,12 +87,12 @@ namespace FlightSimulator.Model
                             {
                                 Console.WriteLine("data is {0}", s);
                             }
-                            // the lon and lat values should be in the first two indexes.
                             Console.WriteLine("lon before {0}", model.Lon);
+                            // the lon and lat values should be in the first two indexes.
                             model.Lon = Convert.ToDouble(parsedData[0]);
                             model.Lat = Convert.ToDouble(parsedData[1]);
                             Console.WriteLine("lon after {0}", model.Lon);
-                            // maybe think about a better way to return the values, maybe client handler. the lon and lat should be in the 0 and 1 places in the parsed data array.
+                           
                         }
                     }
                     client.Close();
@@ -97,7 +101,6 @@ namespace FlightSimulator.Model
 
             });
             thread.Start();
-            // read the data here !!!
         }
 
     }
