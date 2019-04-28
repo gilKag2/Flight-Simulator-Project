@@ -57,7 +57,6 @@ namespace FlightSimulator.Model
         public void CloseServer()
         {
             if (server == null) return;
-            Console.WriteLine("closing");
             _stop = true;
             server.Stop();
             IsConnected = false;
@@ -76,17 +75,12 @@ namespace FlightSimulator.Model
 
                     using (NetworkStream stream = client.GetStream())
                     {
-                        Console.WriteLine("stop is {0}", _stop.ToString()); ///////////////////delete
-                        while (!_stop)
+                        while (!_stop && stream != null && stream.CanRead)
                         {
 
                             byte[] data = new Byte[client.ReceiveBufferSize];
                             Int32 bytesReaden = stream.Read(data, 0, data.Length);
                             string[] parsedData = Encoding.ASCII.GetString(data, 0, bytesReaden).Split(',');
-                           foreach(string s in parsedData)
-                            {
-                                Console.WriteLine("data is {0}", s);
-                            }
                             Console.WriteLine("lon before {0}", model.Lon);
                             // the lon and lat values should be in the first two indexes.
                             model.Lon = Convert.ToDouble(parsedData[0]);

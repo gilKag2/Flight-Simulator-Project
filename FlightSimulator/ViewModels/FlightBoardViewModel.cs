@@ -17,6 +17,8 @@ namespace FlightSimulator.ViewModels
             model = new FlightBoardModel();
             model.PropertyChanged += delegate (object sender, PropertyChangedEventArgs e)
             {
+                if (e.PropertyName == "Lat") Lat = model.Lat;
+                else if (e.PropertyName == "Lon") Lon = model.Lon;
                 NotifyPropertyChanged(e.PropertyName);
             };
         }

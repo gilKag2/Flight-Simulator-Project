@@ -16,11 +16,9 @@
                     </TextBlock.LayoutTransform>
                 </TextBlock>
 
-                <Slider Value ="{Binding VM_throttle}" Orientation="Vertical"  Margin="40,0,0,0.2"  IsSnapToTickEnabled="True" TickFrequency="0.1" Maximum="1" Minimum="-1" TickPlacement="BottomRight" Width="22">
-                    <Slider.LayoutTransform>
-                        <RotateTransform Angle="-180"/>
-                    </Slider.LayoutTransform>
-                </Slider>
+                <Slider Value ="{Binding VM_throttle}" Orientation="Vertical"  Margin="40,0,0,0.2"  IsSnapToTickEnabled="True" TickFrequency="0.1" Maximum="1" Minimum="-1" TickPlacement="TopLeft" Width="22"/>
+
+
             </StackPanel>
 
 
