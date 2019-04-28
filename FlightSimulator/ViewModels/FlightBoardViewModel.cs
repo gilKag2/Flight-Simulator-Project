@@ -4,24 +4,23 @@ using System.Windows.Input;
 
 namespace FlightSimulator.ViewModels
 {
-    public 
+    public
         class FlightBoardViewModel : BaseNotify
     {
         private double _lon;
         private double _lat;
         private FlightBoardModel model;
         private Settings settings;
-        private bool _isSettingsWindowOpen;
         public FlightBoardViewModel()
         {
-            _isSettingsWindowOpen = false;
+            settings = new Settings();
             model = new FlightBoardModel();
             model.PropertyChanged += delegate (object sender, PropertyChangedEventArgs e)
             {
                 NotifyPropertyChanged(e.PropertyName);
             };
-         }
-        
+        }
+
         public double Lon
         {
             get
@@ -59,28 +58,15 @@ namespace FlightSimulator.ViewModels
 
         private void OnSettings()
         {
-            if (settings == null || settings.IsLoaded)
-            {
-                settings = new Settings();
-                settings.Show();
-                _isSettingsWindowOpen = true;
-            }
-         
+          if (!settings.IsLoaded ) settings = new Settings();
+
+          settings.Show();
+
+
         }
 
         private ICommand _connectCommand;
         public ICommand ConnectCommand => _connectCommand ?? (_connectCommand = new CommandHandler(() => OnConnect()));
-
-        // not sure if needed!!!!
-        public void CloseSettings()
-        {
-            if (!_isSettingsWindowOpen)
-            {
-                settings.Close();
-                settings = null;
-                _isSettingsWindowOpen = false;
-            }
-        }
 
         private void OnConnect()
         {

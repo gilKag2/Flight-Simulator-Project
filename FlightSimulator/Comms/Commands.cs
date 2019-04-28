@@ -37,7 +37,6 @@ namespace FlightSimulator.Model
         public Commands()
         {
             _isConnected = false;
-            _client = new TcpClient();
             _settings = ApplicationSettingsModel.Instance;
             ep = new IPEndPoint(IPAddress.Parse(_settings.FlightServerIP), _settings.FlightCommandPort);
         }
@@ -51,6 +50,8 @@ namespace FlightSimulator.Model
         }
         public void Connect()
         {
+            Console.WriteLine("trying to connect - client");
+            _client = new TcpClient();
             Thread thread = new Thread(() =>
             {
                 // try to connect until sucess.
@@ -59,7 +60,8 @@ namespace FlightSimulator.Model
                     try
                     {
                         _client.Connect(ep);
-                        Thread.CurrentThread.Abort();
+                        Console.WriteLine("connected - client");
+                        //Thread.CurrentThread.Abort();
                     }
                     catch (Exception) { }
                 }
@@ -75,20 +77,17 @@ namespace FlightSimulator.Model
             {
                 using (NetworkStream stream = _client.GetStream())
                 {
-                    while (!_stop)
+                    foreach (string command in commands)
                     {
-                        foreach (string command in commands)
-                        {
-                            Byte[] data = Encoding.ASCII.GetBytes(command + "\r\n");
-                            stream.Write(data, 0, data.Length);
-                            stream.Flush();
-                            // send the data every 2 seconds.
-                            Thread.Sleep(2000);
-                        }
+                        Console.WriteLine("sending data - client");
+                        Byte[] data = Encoding.ASCII.GetBytes(command + "\r\n");
+                        stream.Write(data, 0, data.Length);
+                        stream.Flush();
+                        // send the data every 2 seconds.
+                        Thread.Sleep(2000);
                     }
-                    
                 }
-               
+
             });
             thread.Start();
         }

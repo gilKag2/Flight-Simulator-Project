@@ -51,9 +51,10 @@ namespace FlightSimulator.Model
         }
         public void Connect()
         {
+            if (client.IsConnected || server.IsConnected) return;
+            client.Connect();
             server.OpenServer();
             server.Listen(this);
-            client.Connect();
             
             _isConnected = true;
 

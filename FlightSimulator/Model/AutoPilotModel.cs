@@ -5,13 +5,16 @@ namespace FlightSimulator.Model
     internal class AutoPilotModel : BaseNotify
     {
 
-      
         public void SendCommands(string commands)
         {
-            Commands client = Commands.Instance;
-            if (!client.IsConnected) return;
             string[] commandsArray = commands.Split('\n');
-            client.SendCommands(commandsArray);
+            int len = commandsArray.Length;
+            // get rid of '\r in each string
+            for (int i = 0; i< len; i++)
+            {
+                if (commandsArray[i].EndsWith("\r")) commandsArray[i] = commandsArray[i].Substring(0, commandsArray[i].Length - 1);
+            }
+            Commands.Instance.SendCommands(commandsArray);
         }
     }
 }
